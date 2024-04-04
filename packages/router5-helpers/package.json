@@ -1,31 +1,34 @@
 {
-  "name": "@riogz/router5-helpers",
-  "version": "8.1.2",
-  "description": "Router5 helpers for comparing and checking routes",
-  "main": "dist/index.js",
-  "jsnext:main": "dist/index.es.js",
-  "module": "dist/index.es.js",
-  "typings": "dist/index.d.ts",
-  "files": [
-    "dist"
-  ],
-  "sideEffects": false,
-  "repository": {
-    "type": "git",
-    "url": "git+https://github.com/riogod/router5/router5.git"
-  },
-  "keywords": [
-    "router5",
-    "helpers"
-  ],
-  "author": "Thomas Roch <thomas.c.roch@gmail.com>",
-  "license": "MIT",
-  "bugs": {
-    "url": "https://github.com/riogod/router5/issues"
-  },
-  "homepage": "https://github.com/router5/router5/tree/master/packages/router5-helpers",
-  "scripts": {
-    "test": "jest"
-  },
-  "gitHead": "f22dc9c6bd912c8dbb1119a0032da8caad7292ea"
+    "name": "@riogz/router5-helpers",
+    "version": "8.1.2",
+    "description": "Router5 helpers for comparing and checking routes",
+    "main": "dist/index.js",
+    "jsnext:main": "dist/index.es.js",
+    "module": "dist/index.es.js",
+    "typings": "dist/index.d.ts",
+    "files": [
+        "dist"
+    ],
+    "sideEffects": false,
+    "repository": {
+        "type": "git",
+        "url": "git+https://github.com/riogod/router5/router5.git"
+    },
+    "keywords": [
+        "router5",
+        "helpers"
+    ],
+    "author": "Thomas Roch <thomas.c.roch@gmail.com>",
+    "license": "MIT",
+    "bugs": {
+        "url": "https://github.com/riogod/router5/issues"
+    },
+    "homepage": "https://github.com/router5/router5/tree/master/packages/router5-helpers",
+    "publishConfig": {
+        "access": "public"
+    },
+    "scripts": {
+        "test": "jest"
+    },
+    "gitHead": "f22dc9c6bd912c8dbb1119a0032da8caad7292ea"
 }

@@ -1,41 +1,44 @@
 {
-  "name": "@riogz/router5",
-  "version": "8.1.2",
-  "description": "A simple, powerful, view-agnostic, modular and extensible router",
-  "main": "dist/index.js",
-  "jsnext:main": "dist/index.es.js",
-  "module": "dist/index.es.js",
-  "typings": "dist/index.d.ts",
-  "files": [
-    "dist"
-  ],
-  "sideEffects": false,
-  "repository": {
-    "type": "git",
-    "url": "https://github.com/riogod/router5/router5.git"
-  },
-  "keywords": [
-    "router",
-    "routing",
-    "html5",
-    "functional",
-    "reactive",
-    "universal",
-    "isomorphic"
-  ],
-  "author": "Thomas Roch",
-  "license": "MIT",
-  "bugs": {
-    "url": "https://github.com/riogod/router5/issues"
-  },
-  "homepage": "https://router5.js.org",
-  "dependencies": {
-    "@riogz/router5-transition-path": "^8.1.2",
-    "route-node": "4.1.1",
-    "symbol-observable": "1.2.0"
-  },
-  "scripts": {
-    "test": "jest"
-  },
-  "gitHead": "f22dc9c6bd912c8dbb1119a0032da8caad7292ea"
+    "name": "@riogz/router5",
+    "version": "8.1.2",
+    "description": "A simple, powerful, view-agnostic, modular and extensible router",
+    "main": "dist/index.js",
+    "jsnext:main": "dist/index.es.js",
+    "module": "dist/index.es.js",
+    "typings": "dist/index.d.ts",
+    "files": [
+        "dist"
+    ],
+    "sideEffects": false,
+    "repository": {
+        "type": "git",
+        "url": "https://github.com/riogod/router5/router5.git"
+    },
+    "keywords": [
+        "router",
+        "routing",
+        "html5",
+        "functional",
+        "reactive",
+        "universal",
+        "isomorphic"
+    ],
+    "author": "Thomas Roch",
+    "license": "MIT",
+    "bugs": {
+        "url": "https://github.com/riogod/router5/issues"
+    },
+    "homepage": "https://router5.js.org",
+    "publishConfig": {
+        "access": "public"
+    },
+    "dependencies": {
+        "@riogz/router5-transition-path": "^8.1.2",
+        "route-node": "4.1.1",
+        "symbol-observable": "1.2.0"
+    },
+    "scripts": {
+        "test": "jest"
+    },
+    "gitHead": "f22dc9c6bd912c8dbb1119a0032da8caad7292ea"
 }
