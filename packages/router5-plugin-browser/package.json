@@ -1,6 +1,6 @@
 {
   "name": "@riogod/router5-plugin-browser",
-  "version": "8.1.0",
+  "version": "8.1.1",
   "description": "Router5 browser plugin",
   "main": "dist/index.js",
   "jsnext:main": "dist/index.es.js",
@@ -24,7 +24,7 @@
     "url": "https://github.com/router5/router5/issues"
   },
   "devDependencies": {
-    "@riogod/router5": "^8.1.0"
+    "@riogod/router5": "^8.1.1"
   },
   "peerDependencies": {
     "@riogod/router5": "^8.0.1"
