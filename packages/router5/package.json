@@ -1,6 +1,6 @@
 {
   "name": "@riogz/router5",
-  "version": "8.1.1",
+  "version": "8.1.2",
   "description": "A simple, powerful, view-agnostic, modular and extensible router",
   "main": "dist/index.js",
   "jsnext:main": "dist/index.es.js",
@@ -30,7 +30,7 @@
   },
   "homepage": "https://router5.js.org",
   "dependencies": {
-    "@riogz/router5-transition-path": "^8.1.1",
+    "@riogz/router5-transition-path": "^8.1.2",
     "route-node": "4.1.1",
     "symbol-observable": "1.2.0"
   },

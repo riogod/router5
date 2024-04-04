@@ -1,6 +1,6 @@
 {
   "name": "@riogz/react-router5",
-  "version": "8.1.1",
+  "version": "8.1.2",
   "description": "router5 helpers for React",
   "main": "dist/index.js",
   "jsnext:main": "dist/index.es.js",
@@ -28,10 +28,10 @@
   "author": "Thomas Roch",
   "license": "MIT",
   "dependencies": {
-    "@riogz/router5-transition-path": "^8.1.1"
+    "@riogz/router5-transition-path": "^8.1.2"
   },
   "devDependencies": {
-    "@riogz/router5": "^8.1.1"
+    "@riogz/router5": "^8.1.2"
   },
   "peerDependencies": {
     "react": ">=16.3.0",
