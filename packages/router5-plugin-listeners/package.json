@@ -1,5 +1,5 @@
 {
-  "name": "router5-plugin-listeners",
+  "name": "@riogod/router5-plugin-listeners",
   "version": "8.0.1",
   "description": "Router5 browser plugin",
   "main": "dist/index.js",
@@ -24,13 +24,13 @@
     "url": "https://github.com/router5/router5/issues"
   },
   "devDependencies": {
-    "router5": "^8.0.1"
+    "@riogod/router5": "^8.0.1"
   },
   "dependencies": {
-    "router5-transition-path": "^8.0.1"
+    "@riogod/router5-transition-path": "^8.0.1"
   },
   "peerDependencies": {
-    "router5": "^8.0.0"
+    "@riogod/router5": "^8.0.1"
   },
   "homepage": "https://github.com/router5/router5/tree/master/packages/router5-plugin-listeners",
   "scripts": {

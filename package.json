@@ -1,5 +1,5 @@
 {
-  "name": "router5",
+  "name": "@riogod/router5",
   "private": true,
   "description": "A simple, powerful, view-agnostic, modular and extensible router",
   "scripts": {
@@ -70,8 +70,7 @@
     "typescript": "~3.7.4",
     "webpack": "~4.41.4",
     "webpack-dev-middleware": "~3.7.2",
-    "webpack-dev-server": "~3.10.1",
-    "xstream": "~11.11.0"
+    "webpack-dev-server": "~3.10.1"
   },
   "husky": {
     "hooks": {

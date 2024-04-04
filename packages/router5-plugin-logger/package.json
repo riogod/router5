@@ -24,10 +24,10 @@
     "url": "https://github.com/router5/router5/issues"
   },
   "devDependencies": {
-    "router5": "^8.0.1"
+    "@riogod/router5": "^8.0.1"
   },
   "peerDependencies": {
-    "router5": "^8.0.0"
+    "@riogod/router5": "^8.0.1"
   },
   "homepage": "https://github.com/router5/router5/tree/master/packages/router5-plugin-logger"
 }
