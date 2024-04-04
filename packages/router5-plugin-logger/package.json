@@ -1,5 +1,5 @@
 {
-  "name": "router5-plugin-logger",
+  "name": "@riogod/router5-plugin-logger",
   "version": "8.0.1",
   "description": "Router5 browser plugin",
   "main": "dist/index.js",
