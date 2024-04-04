@@ -29,5 +29,6 @@
   "peerDependencies": {
     "@riogod/router5": "^8.0.1"
   },
-  "homepage": "https://github.com/router5/router5/tree/master/packages/router5-plugin-logger"
+  "homepage": "https://github.com/router5/router5/tree/master/packages/router5-plugin-logger",
+  "gitHead": "2bd5b4081a3e142d72499fb16e6140401b889a3e"
 }

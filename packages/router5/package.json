@@ -36,5 +36,6 @@
   },
   "scripts": {
     "test": "jest"
-  }
+  },
+  "gitHead": "2bd5b4081a3e142d72499fb16e6140401b889a3e"
 }
