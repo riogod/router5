@@ -1,6 +1,6 @@
 {
     "name": "@riogz/router5-helpers",
-    "version": "8.1.2",
+    "version": "8.1.3",
     "description": "Router5 helpers for comparing and checking routes",
     "main": "dist/index.js",
     "jsnext:main": "dist/index.es.js",
