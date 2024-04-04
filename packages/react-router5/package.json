@@ -1,5 +1,5 @@
 {
-  "name": "@riogod/react-router5",
+  "name": "@riogz/react-router5",
   "version": "8.1.1",
   "description": "router5 helpers for React",
   "main": "dist/index.js",
@@ -28,14 +28,14 @@
   "author": "Thomas Roch",
   "license": "MIT",
   "dependencies": {
-    "@riogod/router5-transition-path": "^8.1.1"
+    "@riogz/router5-transition-path": "^8.1.1"
   },
   "devDependencies": {
-    "@riogod/router5": "^8.1.1"
+    "@riogz/router5": "^8.1.1"
   },
   "peerDependencies": {
     "react": ">=16.3.0",
     "router5": "^8.0.0"
   },
-  "gitHead": "2bd5b4081a3e142d72499fb16e6140401b889a3e"
+  "gitHead": "f22dc9c6bd912c8dbb1119a0032da8caad7292ea"
 }

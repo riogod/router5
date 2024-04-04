@@ -1,5 +1,5 @@
 {
-  "name": "@riogod/router5-transition-path",
+  "name": "@riogz/router5-transition-path",
   "version": "8.1.1",
   "description": "Router5 transition path helper function",
   "main": "dist/index.js",
@@ -25,10 +25,10 @@
   },
   "homepage": "https://github.com/router5/router5/tree/master/packages/router5-transition-path",
   "peerDependencies": {
-    "@riogod/router5": "^8.0.1"
+    "@riogz/router5": "^8.0.1"
   },
   "scripts": {
     "test": "jest"
   },
-  "gitHead": "2bd5b4081a3e142d72499fb16e6140401b889a3e"
+  "gitHead": "f22dc9c6bd912c8dbb1119a0032da8caad7292ea"
 }

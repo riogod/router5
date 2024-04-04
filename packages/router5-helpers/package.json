@@ -1,5 +1,5 @@
 {
-  "name": "@riogod/router5-helpers",
+  "name": "@riogz/router5-helpers",
   "version": "8.1.1",
   "description": "Router5 helpers for comparing and checking routes",
   "main": "dist/index.js",
@@ -27,5 +27,5 @@
   "scripts": {
     "test": "jest"
   },
-  "gitHead": "2bd5b4081a3e142d72499fb16e6140401b889a3e"
+  "gitHead": "f22dc9c6bd912c8dbb1119a0032da8caad7292ea"
 }

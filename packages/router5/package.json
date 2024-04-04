@@ -1,5 +1,5 @@
 {
-  "name": "@riogod/router5",
+  "name": "@riogz/router5",
   "version": "8.1.1",
   "description": "A simple, powerful, view-agnostic, modular and extensible router",
   "main": "dist/index.js",
@@ -30,12 +30,12 @@
   },
   "homepage": "https://router5.js.org",
   "dependencies": {
-    "@riogod/router5-transition-path": "^8.1.1",
+    "@riogz/router5-transition-path": "^8.1.1",
     "route-node": "4.1.1",
     "symbol-observable": "1.2.0"
   },
   "scripts": {
     "test": "jest"
   },
-  "gitHead": "2bd5b4081a3e142d72499fb16e6140401b889a3e"
+  "gitHead": "f22dc9c6bd912c8dbb1119a0032da8caad7292ea"
 }
