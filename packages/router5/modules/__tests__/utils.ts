@@ -150,4 +150,30 @@ describe('core/utils', () => {
         expect(router.buildPath('withDefaults')).toBe('/with-defaults/1')
         expect(router.makeState('withDefaults').params).toEqual({ id: '1' })
     })
+
+    it('should compare states by areStatesEqual method', () => {
+        const router = createRouter([
+            {
+                name: 'withDefaults',
+                defaultParams: { id: '1' },
+                path: '/with-defaults/:id'
+            }
+        ])
+
+        expect(
+            router.areStatesEqual(
+                {
+                    name: 'withDefaults',
+                    path: '/with-defaults/1',
+                    params: { a: 1, b: undefined }
+                },
+                {
+                    name: 'withDefaults',
+                    path: '/with-defaults/1',
+                    params: { a: 1, c: 2 }
+                },
+                false
+            )
+        ).toBe(false)
+    })
 })
