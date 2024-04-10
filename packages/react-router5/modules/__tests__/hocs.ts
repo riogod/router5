@@ -5,11 +5,6 @@ import {
     createTestRouterWithADefaultRoute
 } from './helpers'
 import { withRoute, withRouter, routeNode } from '..'
-import { configure } from 'enzyme'
-import Adapter from 'enzyme-adapter-react-16'
-
-//@ts-ignore
-configure({ adapter: new Adapter() })
 
 describe('withRoute hoc', () => {
     let router
@@ -43,7 +38,6 @@ describe('withRouter hoc', () => {
     it('should inject the router on the wrapped component props', () => {
         const ChildSpy = jest.fn(FnChild)
 
-        //@ts-ignore
         renderWithRouter(router)(withRouter(ChildSpy))
 
         expect(ChildSpy).toHaveBeenCalledWith(

@@ -11,12 +11,16 @@ export interface BaseLinkProps extends HTMLAttributes<HTMLAnchorElement> {
     ignoreQueryParams?: boolean
     onClick?: MouseEventHandler<HTMLAnchorElement>
     onMouseOver?: MouseEventHandler<HTMLAnchorElement>
+
     successCallback?(state?: State): void
+
     errorCallback?(error?: any): void
+
     target?: string
     route?: State
     previousRoute?: State
     router: Router
+    'data-testid'?: string
 }
 
 export interface BaseLinkState {
@@ -130,6 +134,7 @@ class BaseLink extends Component<BaseLinkProps, BaseLinkState> {
             {
                 ...linkProps,
                 href,
+                'data-testid': this.props['data-testid'],
                 className: linkclassName,
                 onClick: this.clickHandler
             },

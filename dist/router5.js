@@ -1,23 +1,25 @@
 (function (global, factory) {
     typeof exports === 'object' && typeof module !== 'undefined' ? factory(exports) :
     typeof define === 'function' && define.amd ? define(['exports'], factory) :
-    (global = global || self, factory(global.router5 = {}));
-}(this, (function (exports) { 'use strict';
+    (global = typeof globalThis !== 'undefined' ? globalThis : global || self, factory(global.router5 = {}));
+})(this, (function (exports) { 'use strict';
 
-    /*! *****************************************************************************
-    Copyright (c) Microsoft Corporation. All rights reserved.
-    Licensed under the Apache License, Version 2.0 (the "License"); you may not use
-    this file except in compliance with the License. You may obtain a copy of the
-    License at http://www.apache.org/licenses/LICENSE-2.0
+    /******************************************************************************
+    Copyright (c) Microsoft Corporation.
 
-    THIS CODE IS PROVIDED ON AN *AS IS* BASIS, WITHOUT WARRANTIES OR CONDITIONS OF ANY
-    KIND, EITHER EXPRESS OR IMPLIED, INCLUDING WITHOUT LIMITATION ANY IMPLIED
-    WARRANTIES OR CONDITIONS OF TITLE, FITNESS FOR A PARTICULAR PURPOSE,
-    MERCHANTABLITY OR NON-INFRINGEMENT.
+    Permission to use, copy, modify, and/or distribute this software for any
+    purpose with or without fee is hereby granted.
 
-    See the Apache Version 2.0 License for specific language governing permissions
-    and limitations under the License.
+    THE SOFTWARE IS PROVIDED "AS IS" AND THE AUTHOR DISCLAIMS ALL WARRANTIES WITH
+    REGARD TO THIS SOFTWARE INCLUDING ALL IMPLIED WARRANTIES OF MERCHANTABILITY
+    AND FITNESS. IN NO EVENT SHALL THE AUTHOR BE LIABLE FOR ANY SPECIAL, DIRECT,
+    INDIRECT, OR CONSEQUENTIAL DAMAGES OR ANY DAMAGES WHATSOEVER RESULTING FROM
+    LOSS OF USE, DATA OR PROFITS, WHETHER IN AN ACTION OF CONTRACT, NEGLIGENCE OR
+    OTHER TORTIOUS ACTION, ARISING OUT OF OR IN CONNECTION WITH THE USE OR
+    PERFORMANCE OF THIS SOFTWARE.
     ***************************************************************************** */
+    /* global Reflect, Promise, SuppressedError, Symbol */
+
 
     var __assign = function() {
         __assign = Object.assign || function __assign(t) {
@@ -30,7 +32,12 @@
         return __assign.apply(this, arguments);
     };
 
-    var defaultOptions = {
+    typeof SuppressedError === "function" ? SuppressedError : function (error, suppressed, message) {
+        var e = new Error(message);
+        return e.name = "SuppressedError", e.error = error, e.suppressed = suppressed, e;
+    };
+
+    var defaultOptions$1 = {
         trailingSlashMode: 'default',
         queryParamsMode: 'default',
         strictTrailingSlash: false,
@@ -43,7 +50,7 @@
     };
     function withOptions(options) {
         return function (router) {
-            var routerOptions = __assign(__assign({}, defaultOptions), options);
+            var routerOptions = __assign(__assign({}, defaultOptions$1), options);
             router.getOptions = function () { return routerOptions; };
             router.setOption = function (option, value) {
                 routerOptions[option] = value;
@@ -174,7 +181,7 @@
       return decodeValue(value);
     };
 
-    var getSearch = function getSearch(path) {
+    var getSearch$1 = function getSearch(path) {
       var pos = path.indexOf('?');
 
       if (pos === -1) {
@@ -201,7 +208,7 @@
 
     var parse = function parse(path, opts) {
       var options = makeOptions(opts);
-      return getSearch(path).split('&').reduce(function (params, param) {
+      return getSearch$1(path).split('&').reduce(function (params, param) {
         var _a = param.split('='),
             rawName = _a[0],
             value = _a[1];
@@ -240,7 +247,7 @@
 
     var omit = function omit(path, paramsToOmit, opts) {
       var options = makeOptions(opts);
-      var searchPart = getSearch(path);
+      var searchPart = getSearch$1(path);
 
       if (searchPart === '') {
         return {
@@ -393,7 +400,7 @@
       return tokens;
     };
 
-    var exists = function exists(val) {
+    var exists$2 = function exists(val) {
       return val !== undefined && val !== null;
     };
 
@@ -433,7 +440,7 @@
       return params;
     };
 
-    var defaultOptions$1 = {
+    var defaultOptions = {
       urlParamsEncoding: 'default'
     };
 
@@ -448,7 +455,7 @@
         }
 
         this.path = path;
-        this.options = __assign(__assign({}, defaultOptions$1), options);
+        this.options = __assign(__assign({}, defaultOptions), options);
         this.tokens = tokenise(path);
         this.hasUrlParams = this.tokens.filter(function (t) {
           return /^url-parameter/.test(t.type);
@@ -571,7 +578,7 @@
         var encodedUrlParams = Object.keys(params).filter(function (p) {
           return !_this.isQueryParam(p);
         }).reduce(function (acc, key) {
-          if (!exists(params[key])) {
+          if (!exists$2(params[key])) {
             return acc;
           }
 
@@ -593,10 +600,10 @@
         }, {}); // Check all params are provided (not search parameters which are optional)
 
         if (this.urlParams.some(function (p) {
-          return !exists(params[p]);
+          return !exists$2(params[p]);
         })) {
           var missingParameters = this.urlParams.filter(function (p) {
-            return !exists(params[p]);
+            return !exists$2(params[p]);
           });
           throw new Error("Cannot build path: '" + this.path + "' requires missing parameters { " + missingParameters.join(', ') + ' }');
         } // Check constraints
@@ -783,7 +790,7 @@
       return path.split('?')[0];
     };
 
-    var getSearch$1 = function getSearch(path) {
+    var getSearch = function getSearch(path) {
       return path.split('?')[1] || '';
     };
 
@@ -855,7 +862,7 @@
             remainingPath = remainingPath.replace(/^\/\?/, '?');
           }
 
-          var querystring = omit(getSearch$1(segment.replace(consumedPath, '')), child.parser.queryParams, options.queryParams).querystring;
+          var querystring = omit(getSearch(segment.replace(consumedPath, '')), child.parser.queryParams, options.queryParams).querystring;
           remainingPath = getPath(remainingPath) + (querystring ? "?" + querystring : '');
 
           if (!strictTrailingSlash && !isRoot && remainingPath === '/' && !/\/$/.test(consumedPath)) {
@@ -1583,8 +1590,25 @@
     		if (Symbol.observable) {
     			result = Symbol.observable;
     		} else {
-    			result = Symbol('observable');
-    			Symbol.observable = result;
+
+    			if (typeof Symbol.for === 'function') {
+    				// This just needs to be something that won't trample other user's Symbol.for use
+    				// It also will guide people to the source of their issues, if this is problematic.
+    				// META: It's a resource locator!
+    				result = Symbol.for('https://github.com/benlesh/symbol-observable');
+    			} else {
+    				// Symbol.for didn't exist! The best we can do at this point is a totally 
+    				// unique symbol. Note that the string argument here is a descriptor, not
+    				// an identifier. This symbol is unique.
+    				result = Symbol('https://github.com/benlesh/symbol-observable');
+    			}
+    			try {
+    				Symbol.observable = result;
+    			} catch (err) {
+    				// Do nothing. In some environments, users have frozen `Symbol` for security reasons,
+    				// if it is frozen assigning to it will throw. In this case, we don't care, because
+    				// they will need to use the returned value from the ponyfill.
+    			}
     		}
     	} else {
     		result = '@@observable';
@@ -1663,7 +1687,7 @@
         return router;
     }
 
-    var nameToIDs = function (name) {
+    var nameToIDs$1 = function (name) {
         return name
             .split('.')
             .reduce(function (ids, name) {
@@ -1671,19 +1695,19 @@
         }, []);
     };
     var exists$1 = function (val) { return val !== undefined && val !== null; };
-    var hasMetaParams = function (state) { return state && state.meta && state.meta.params; };
-    var extractSegmentParams = function (name, state) {
-        if (!hasMetaParams(state) || !exists$1(state.meta.params[name]))
+    var hasMetaParams$1 = function (state) { return state && state.meta && state.meta.params; };
+    var extractSegmentParams$1 = function (name, state) {
+        if (!hasMetaParams$1(state) || !exists$1(state.meta.params[name]))
             return {};
         return Object.keys(state.meta.params[name]).reduce(function (params, p) {
             params[p] = state.params[p];
             return params;
         }, {});
     };
-    function transitionPath(toState, fromState) {
+    function transitionPath$1(toState, fromState) {
         var toStateOptions = (toState.meta && toState.meta && toState.meta.options) || {};
-        var fromStateIds = fromState ? nameToIDs(fromState.name) : [];
-        var toStateIds = nameToIDs(toState.name);
+        var fromStateIds = fromState ? nameToIDs$1(fromState.name) : [];
+        var toStateIds = nameToIDs$1(toState.name);
         var maxI = Math.min(fromStateIds.length, toStateIds.length);
         function pointOfDifference() {
             var i;
@@ -1692,8 +1716,8 @@
                 var right = toStateIds[i];
                 if (left !== right)
                     return { value: i };
-                var leftParams = extractSegmentParams(left, toState);
-                var rightParams = extractSegmentParams(right, fromState);
+                var leftParams = extractSegmentParams$1(left, toState);
+                var rightParams = extractSegmentParams$1(right, fromState);
                 if (Object.keys(leftParams).length !==
                     Object.keys(rightParams).length)
                     return { value: i };
@@ -1715,7 +1739,7 @@
         if (!fromState || toStateOptions.reload) {
             i = 0;
         }
-        else if (!hasMetaParams(fromState) && !hasMetaParams(toState)) {
+        else if (!hasMetaParams$1(fromState) && !hasMetaParams$1(toState)) {
             i = 0;
         }
         else {
@@ -1838,7 +1862,7 @@
                 return;
             }
             if (!err && options.autoCleanUp) {
-                var activeSegments_1 = nameToIDs(toState.name);
+                var activeSegments_1 = nameToIDs$1(toState.name);
                 Object.keys(canDeactivateFunctions).forEach(function (name) {
                     if (activeSegments_1.indexOf(name) === -1)
                         router.clearCanDeactivate(name);
@@ -1849,7 +1873,7 @@
         var makeError = function (base, err) { return (__assign(__assign({}, base), (err instanceof Object ? err : { error: err }))); };
         var isUnknownRoute = toState.name === constants.UNKNOWN_ROUTE;
         var asyncBase = { isCancelled: isCancelled, toState: toState, fromState: fromState };
-        var _b = transitionPath(toState, fromState), toDeactivate = _b.toDeactivate, toActivate = _b.toActivate;
+        var _b = transitionPath$1(toState, fromState), toDeactivate = _b.toDeactivate, toActivate = _b.toActivate;
         var canDeactivate = !fromState || opts.forceDeactivate
             ? []
             : function (toState, fromState, cb) {
@@ -1897,7 +1921,7 @@
         return cancel;
     }
 
-    var noop = function () { };
+    var noop$1 = function () { };
     function withNavigation(router) {
         var cancelCurrentTransition;
         router.navigate = navigate;
@@ -1912,7 +1936,7 @@
                 ? args[1]
                 : typeof args[0] === 'function'
                     ? args[0]
-                    : noop;
+                    : noop$1;
             var options = router.getOptions();
             if (options.defaultRoute) {
                 return navigate(options.defaultRoute, options.defaultParams, opts, done);
@@ -1933,7 +1957,7 @@
             }
             var name = args[0];
             var lastArg = args[args.length - 1];
-            var done = typeof lastArg === 'function' ? lastArg : noop;
+            var done = typeof lastArg === 'function' ? lastArg : noop$1;
             var params = typeof args[1] === 'object' ? args[1] : {};
             var opts = typeof args[2] === 'object' ? args[2] : {};
             if (!router.isStarted()) {
@@ -1962,7 +1986,7 @@
             var fromState = router.getState();
             if (opts.skipTransition) {
                 done(null, toState);
-                return noop;
+                return noop$1;
             }
             // Transition
             return router.transitionToState(toState, fromState, opts, function (err, state) {
@@ -1983,7 +2007,7 @@
         }
         router.transitionToState = function (toState, fromState, options, done) {
             if (options === void 0) { options = {}; }
-            if (done === void 0) { done = noop; }
+            if (done === void 0) { done = noop$1; }
             router.cancel();
             router.invokeEventListeners(constants.TRANSITION_START, toState, fromState);
             cancelCurrentTransition = transition(router, toState, fromState, options, function (err, state) {
@@ -2008,7 +2032,7 @@
         return router;
     }
 
-    var noop$1 = function () { };
+    var noop = function () { };
     function withRouterLifecycle(router) {
         var started = false;
         router.isStarted = function () { return started; };
@@ -2020,7 +2044,7 @@
             }
             var options = router.getOptions();
             var lastArg = args[args.length - 1];
-            var done = typeof lastArg === 'function' ? lastArg : noop$1;
+            var done = typeof lastArg === 'function' ? lastArg : noop;
             var startPathOrState = typeof args[0] !== 'function' ? args[0] : undefined;
             if (started) {
                 done({ code: errorCodes.ROUTER_ALREADY_STARTED });
@@ -2158,6 +2182,74 @@
         return pipe(withOptions(options), withDependencies(dependencies), withObservability, withState, withRouterLifecycle, withRouteLifecycle, withNavigation, withPlugins, withMiddleware, withRoutes(routes))({ config: config });
     };
 
+    var nameToIDs = function (name) {
+        return name
+            .split('.')
+            .reduce(function (ids, name) {
+            return ids.concat(ids.length ? ids[ids.length - 1] + '.' + name : name);
+        }, []);
+    };
+    var exists = function (val) { return val !== undefined && val !== null; };
+    var hasMetaParams = function (state) { return state && state.meta && state.meta.params; };
+    var extractSegmentParams = function (name, state) {
+        if (!hasMetaParams(state) || !exists(state.meta.params[name]))
+            return {};
+        return Object.keys(state.meta.params[name]).reduce(function (params, p) {
+            params[p] = state.params[p];
+            return params;
+        }, {});
+    };
+    function transitionPath(toState, fromState) {
+        var toStateOptions = (toState.meta && toState.meta && toState.meta.options) || {};
+        var fromStateIds = fromState ? nameToIDs(fromState.name) : [];
+        var toStateIds = nameToIDs(toState.name);
+        var maxI = Math.min(fromStateIds.length, toStateIds.length);
+        function pointOfDifference() {
+            var i;
+            var _loop_1 = function () {
+                var left = fromStateIds[i];
+                var right = toStateIds[i];
+                if (left !== right)
+                    return { value: i };
+                var leftParams = extractSegmentParams(left, toState);
+                var rightParams = extractSegmentParams(right, fromState);
+                if (Object.keys(leftParams).length !==
+                    Object.keys(rightParams).length)
+                    return { value: i };
+                if (Object.keys(leftParams).length === 0)
+                    return "continue";
+                var different = Object.keys(leftParams).some(function (p) { return rightParams[p] !== leftParams[p]; });
+                if (different) {
+                    return { value: i };
+                }
+            };
+            for (i = 0; i < maxI; i += 1) {
+                var state_1 = _loop_1();
+                if (typeof state_1 === "object")
+                    return state_1.value;
+            }
+            return i;
+        }
+        var i;
+        if (!fromState || toStateOptions.reload) {
+            i = 0;
+        }
+        else if (!hasMetaParams(fromState) && !hasMetaParams(toState)) {
+            i = 0;
+        }
+        else {
+            i = pointOfDifference();
+        }
+        var toDeactivate = fromStateIds.slice(i).reverse();
+        var toActivate = toStateIds.slice(i);
+        var intersection = fromState && i > 0 ? fromStateIds[i - 1] : '';
+        return {
+            intersection: intersection,
+            toDeactivate: toDeactivate,
+            toActivate: toActivate
+        };
+    }
+
     function cloneRouter(router, dependencies) {
         var clonedRouter = createRouter(router.rootNode, router.getOptions(), dependencies);
         clonedRouter.useMiddleware.apply(clonedRouter, router.getMiddlewareFactories());
@@ -2183,4 +2275,4 @@
 
     Object.defineProperty(exports, '__esModule', { value: true });
 
-})));
+}));

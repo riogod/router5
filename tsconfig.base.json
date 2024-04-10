@@ -1,15 +1,17 @@
 {
-  "compilerOptions": {
-    "target": "es5",
-    "jsx": "react",
-    "allowSyntheticDefaultImports": true,
-    "esModuleInterop": true,
-    "lib": [
-      "es2015",
-      "es2015.promise",
-      "es2015.symbol",
-      "es2015.symbol.wellknown",
-      "dom"
-    ]
-  }
+    "compilerOptions": {
+        "target": "es5",
+        "jsx": "react",
+        "allowSyntheticDefaultImports": true,
+        "importHelpers": false,
+        "esModuleInterop": true,
+        "moduleResolution": "node",
+        "lib": [
+            "es2015",
+            "es2015.promise",
+            "es2015.symbol",
+            "es2015.symbol.wellknown",
+            "dom"
+        ]
+    }
 }

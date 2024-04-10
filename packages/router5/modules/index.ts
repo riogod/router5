@@ -1,6 +1,6 @@
 import createRouter from './createRouter'
 import { RouteNode } from 'route-node'
-import transitionPath from 'router5-transition-path'
+import transitionPath from '@riogz/router5-transition-path'
 import { constants, errorCodes, ErrorCodes, Constants } from './constants'
 import cloneRouter from './clone'
 
