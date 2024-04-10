@@ -9,7 +9,7 @@ export default function shouldUpdateNode(nodeName: string) {
             toDeactivate: toDeactivateReversed
         } = transitionPath(toState, fromSate)
 
-        const toDeactivate = [...toDeactivateReversed].reverse()
+        const toDeactivate = toDeactivateReversed.slice().reverse()
 
         if (toState.meta.options && toState.meta.options.reload) {
             return true

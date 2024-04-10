@@ -18,7 +18,7 @@
         "router5",
         "helpers"
     ],
-    "author": "Thomas Roch <thomas.c.roch@gmail.com>",
+    "author": "Thomas Roch <thomas.c.roch@gmail.com>, Vyacheslav Krasnyanskiy <riogod@gmail.com>",
     "license": "MIT",
     "bugs": {
         "url": "https://github.com/riogod/router5/issues"

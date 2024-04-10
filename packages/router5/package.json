@@ -23,7 +23,7 @@
         "universal",
         "isomorphic"
     ],
-    "author": "Thomas Roch",
+    "author": "Thomas Roch <thomas.c.roch@gmail.com>, Vyacheslav Krasnyanskiy <riogod@gmail.com>",
     "license": "MIT",
     "bugs": {
         "url": "https://github.com/riogod/router5/issues"
@@ -35,7 +35,7 @@
     "dependencies": {
         "@riogz/router5-transition-path": "^8.1.3",
         "route-node": "4.1.1",
-        "symbol-observable": "1.2.0"
+        "symbol-observable": "4.0.0"
     },
     "scripts": {
         "test": "jest"

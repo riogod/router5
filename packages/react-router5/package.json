@@ -28,7 +28,7 @@
         "react",
         "functional"
     ],
-    "author": "Thomas Roch",
+    "author": "Thomas Roch <thomas.c.roch@gmail.com>, Vyacheslav Krasnyanskiy <riogod@gmail.com>",
     "license": "MIT",
     "dependencies": {
         "@riogz/router5-transition-path": "^8.1.3"
@@ -37,7 +37,7 @@
         "@riogz/router5": "^8.1.3"
     },
     "peerDependencies": {
-        "react": ">=16.3.0",
+        "react": ">=17.0.0",
         "router5": "^8.0.0"
     },
     "gitHead": "f22dc9c6bd912c8dbb1119a0032da8caad7292ea"

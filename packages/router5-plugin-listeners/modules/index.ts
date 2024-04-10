@@ -1,20 +1,26 @@
 import { PluginFactory, Router, State } from 'router5'
 import transitionPath from 'router5-transition-path'
-import { removeListener } from 'cluster'
 
 export type Listener = (toState: State, fromState: State | null) => void
 
 declare module 'router5/dist/types/router' {
     interface Router {
         getListeners(): { [key: string]: Listener[] }
+
         addListener(name: string, callback: Listener): void
+
         removeListener(name: string, callback: Listener): void
+
         addNodeListener(name: string, callback: Listener): void
+
         removeNodeListener(name: string, callback: Listener): void
+
         addRouteListener(name: string, callback: Listener): void
+
         removeRouteListener(name: string, callback: Listener): void
     }
 }
+
 export interface ListenersPluginOptions {
     autoCleanUp?: boolean
 }
@@ -45,7 +51,8 @@ const listenersPluginFactory = (
             const normalizedName = name.replace(/^(\*|\^|=)/, '')
 
             if (normalizedName && !/^\$/.test(name)) {
-                //@ts-ignore
+                // eslint-disable-next-line @typescript-eslint/ban-ts-comment
+                //@ts-expect-error
                 const segments = router.rootNode.getSegmentsByName(
                     normalizedName
                 )

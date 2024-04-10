@@ -24,8 +24,11 @@ export interface Route<
     canActivate?: ActivationFnFactory<Dependencies>
     forwardTo?: string
     children?: Array<Route<Dependencies>>
+
     encodeParams?(stateParams: Params): Params
+
     decodeParams?(pathParams: Params): Params
+
     defaultParams?: Params
 }
 
@@ -69,26 +72,33 @@ export interface Router<
     config: Config
 
     rootNode: RouteNode
+
     add(
         routes: Array<Route<Dependencies>> | Route<Dependencies>,
         finalSort?: boolean
     ): Router<Dependencies>
+
     addNode(
         name: string,
         path: string,
         canActivateHandler?: ActivationFnFactory<Dependencies>
     ): Router<Dependencies>
+
     isActive(
         name: string,
         params?: Params,
         strictEquality?: boolean,
         ignoreQueryParams?: boolean
     ): boolean
+
     buildPath(route: string, params?: Params): string
+
     matchPath(path: string, source?: string): State | null
+
     setRootPath(rootPath: string): void
 
     getOptions(): Options
+
     setOption(option: string, value: any): Router<Dependencies>
 
     makeState(
@@ -98,56 +108,78 @@ export interface Router<
         meta?: any,
         forceId?: number
     ): State
+
     makeNotFoundState(path: string, options?: NavigationOptions): State
+
     getState(): State
+
     setState(state: State): void
+
     areStatesEqual(
         state1: State,
         state2: State,
         ignoreQueryParams?: boolean
     ): boolean
+
     areStatesDescendants(parentState: State, childState: State): boolean
+
     forwardState(routeName: string, routeParams: Params): SimpleState
+
     buildState(routeName: string, routeParams: Params): RouteNodeState | null
 
     isStarted(): boolean
+
     start(startPathOrState: string | State, done?: DoneFn): Router<Dependencies>
+
     start(done?: DoneFn): Router<Dependencies>
+
     stop(): void
 
     canDeactivate(
         name: string,
         canDeactivateHandler: ActivationFnFactory<Dependencies> | boolean
     ): Router<Dependencies>
+
     clearCanDeactivate(name: string): Router
+
     canActivate(
         name: string,
         canActivateHandler: ActivationFnFactory<Dependencies> | boolean
     ): Router<Dependencies>
+
     getLifecycleFactories(): [
         { [key: string]: ActivationFnFactory<Dependencies> },
         { [key: string]: ActivationFnFactory<Dependencies> }
     ]
+
     getLifecycleFunctions(): [
         { [key: string]: ActivationFn },
         { [key: string]: ActivationFn }
     ]
 
     usePlugin(...plugins: Array<PluginFactory<Dependencies>>): Unsubscribe
+
     addPlugin(plugin: Plugin): Router<Dependencies>
+
     getPlugins(): Array<PluginFactory<Dependencies>>
 
     useMiddleware(
         ...middlewares: Array<MiddlewareFactory<Dependencies>>
     ): Unsubscribe
+
     clearMiddleware(): Router
+
     getMiddlewareFactories: () => Array<MiddlewareFactory<Dependencies>>
     getMiddlewareFunctions: () => Middleware[]
 
     setDependency(dependencyName: string, dependency: any): Router
+
     setDependencies(deps: Dependencies): Router
+
     getDependencies(): Dependencies
+
     getInjectables(): [Router<Dependencies>, Dependencies]
+
     executeFactory(
         factory: (
             router?: Router<Dependencies>,
@@ -160,17 +192,24 @@ export interface Router<
     addEventListener: (eventName, cb) => Unsubscribe
 
     cancel(): Router<Dependencies>
+
     forward(fromRoute: string, toRoute: string): Router<Dependencies>
+
     navigate(
         routeName: string,
         routeParams: Params,
         options: NavigationOptions,
         done?: DoneFn
     ): CancelFn
+
     navigate(routeName: string, routeParams: Params, done?: DoneFn): CancelFn
+
     navigate(routeName: string, done?: DoneFn): CancelFn
+
     navigateToDefault(opts: NavigationOptions, done?: DoneFn): CancelFn
+
     navigateToDefault(done?: DoneFn): CancelFn
+
     transitionToState(
         toState: State,
         fromState: State,
@@ -183,15 +222,21 @@ export interface Router<
 
 export interface Plugin {
     onStart?(): void
+
     onStop?(): void
+
     onTransitionStart?(toState?: State, fromState?: State): void
+
     onTransitionCancel?(toState?: State, fromState?: State): void
+
     onTransitionError?(toState?: State, fromState?: State, err?: any): void
+
     onTransitionSuccess?(
         toState?: State,
         fromState?: State,
         opts?: NavigationOptions
     ): void
+
     teardown?(): void
 }
 
@@ -217,7 +262,8 @@ export interface SubscribeState {
 export type SubscribeFn = (state: SubscribeState) => void
 
 export interface Listener {
-    next: (val: any) => {}
+    next: (val: any) => NonNullable<unknown>
+
     [key: string]: any
 }
 

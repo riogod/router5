@@ -1,5 +1,5 @@
-import React, { ReactNode, SFC } from 'react'
-import { shouldUpdateNode } from 'router5-transition-path'
+import React, { ReactNode, FC, memo } from 'react'
+import { shouldUpdateNode } from '@riogz/router5-transition-path'
 import { RouteContext } from '../types'
 import { routeContext } from '../context'
 
@@ -8,26 +8,21 @@ export interface RouteNodeProps {
     children: (routeContext: RouteContext) => ReactNode
 }
 
-class RouteNodeRenderer extends React.Component<RouteNodeProps & RouteContext> {
-    constructor(props) {
-        super(props)
-    }
+const RouteNodeRenderer: FC<RouteNodeProps & RouteContext> = memo(
+    (props): ReactNode => {
+        const { router, route, previousRoute } = props
 
-    shouldComponentUpdate(nextProps) {
-        return shouldUpdateNode(this.props.nodeName)(
+        return props.children({ router, route, previousRoute })
+    },
+    (prevProps, nextProps) => {
+        return shouldUpdateNode(prevProps.nodeName)(
             nextProps.route,
             nextProps.previousRoute
         )
     }
+)
 
-    render() {
-        const { router, route, previousRoute } = this.props
-
-        return this.props.children({ router, route, previousRoute })
-    }
-}
-
-const RouteNode: SFC<RouteNodeProps> = props => {
+const RouteNode: FC<RouteNodeProps> = props => {
     return (
         <routeContext.Consumer>
             {routeContext => <RouteNodeRenderer {...props} {...routeContext} />}

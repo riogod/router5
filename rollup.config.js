@@ -40,16 +40,19 @@ const makeConfig = ({
             ? {
                   file,
                   name: packageName,
-                  format: 'umd'
+                  format: 'umd',
+                  exports: 'named'
               }
             : [
                   {
                       format: 'es',
-                      file: `packages/${packageName}/dist/index.es.js`
+                      file: `packages/${packageName}/dist/index.es.js`,
+                      exports: 'named'
                   },
                   {
                       format: 'cjs',
-                      file: `packages/${packageName}/dist/index.js`
+                      file: `packages/${packageName}/dist/index.js`,
+                      exports: 'named'
                   }
               ],
         plugins
