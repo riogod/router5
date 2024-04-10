@@ -53,7 +53,9 @@ export default function withState<Dependencies>(
 
         return (
             state1Params.length === state2Params.length &&
-            state1Params.every(p => state1.params[p] === state2.params[p])
+            Array.from(new Set([...state1Params, ...state2Params])).every(
+                p => state1.params[p] === state2.params[p]
+            )
         )
     }
 
