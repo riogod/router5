@@ -1,44 +1,44 @@
 {
-    "name": "@riogz/react-router5",
-    "version": "8.1.3",
-    "description": "router5 helpers for React",
-    "main": "dist/index.js",
-    "jsnext:main": "dist/index.es.js",
-    "module": "dist/index.es.js",
-    "files": [
-        "dist"
-    ],
-    "typings": "dist/index.d.ts",
-    "homepage": "https://router5.js.org",
-    "publishConfig": {
-        "access": "public"
-    },
-    "repository": {
-        "type": "git",
-        "url": "https://github.com/riogod/router5/router5.git"
-    },
-    "scripts": {
-        "test": "jest"
-    },
-    "keywords": [
-        "router",
-        "html5",
-        "history",
-        "tree",
-        "react",
-        "functional"
-    ],
-    "author": "Thomas Roch <thomas.c.roch@gmail.com>, Vyacheslav Krasnyanskiy <riogod@gmail.com>",
-    "license": "MIT",
-    "dependencies": {
-        "@riogz/router5-transition-path": "^8.1.3"
-    },
-    "devDependencies": {
-        "@riogz/router5": "^8.1.3"
-    },
-    "peerDependencies": {
-        "react": ">=17.0.0",
-        "router5": "^8.0.0"
-    },
-    "gitHead": "f22dc9c6bd912c8dbb1119a0032da8caad7292ea"
+  "name": "@riogz/react-router5",
+  "version": "9.0.0-alpha.0",
+  "description": "router5 helpers for React",
+  "main": "dist/index.js",
+  "jsnext:main": "dist/index.es.js",
+  "module": "dist/index.es.js",
+  "files": [
+    "dist"
+  ],
+  "typings": "dist/index.d.ts",
+  "homepage": "https://router5.js.org",
+  "publishConfig": {
+    "access": "public"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/riogod/router5/router5.git"
+  },
+  "scripts": {
+    "test": "jest"
+  },
+  "keywords": [
+    "router",
+    "html5",
+    "history",
+    "tree",
+    "react",
+    "functional"
+  ],
+  "author": "Thomas Roch <thomas.c.roch@gmail.com>, Vyacheslav Krasnyanskiy <riogod@gmail.com>",
+  "license": "MIT",
+  "dependencies": {
+    "@riogz/router5-transition-path": "^9.0.0-alpha.0"
+  },
+  "devDependencies": {
+    "@riogz/router5": "^9.0.0-alpha.0"
+  },
+  "peerDependencies": {
+    "react": ">=17.0.0",
+    "router5": "^8.0.0"
+  },
+  "gitHead": "f22dc9c6bd912c8dbb1119a0032da8caad7292ea"
 }
