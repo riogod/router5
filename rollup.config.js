@@ -17,12 +17,12 @@ const makeConfig = ({
         typescript({
             tsconfig: `./packages/${packageName}/tsconfig.build.json`,
             useTsconfigDeclarationDir: true,
-            clean: true,
-            tsconfigOverride: { compilerOptions: { declaration } }
+            clean: true
         }),
         compress && uglify()
     ].filter(Boolean)
 
+    console.log(packageName, declaration, plugins)
     return {
         input: `packages/${packageName}/modules/index.ts`,
         external: umd
