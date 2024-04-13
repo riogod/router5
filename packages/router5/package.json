@@ -1,43 +1,43 @@
 {
-  "name": "@riogz/router5",
-  "version": "9.0.1",
-  "description": "A simple, powerful, view-agnostic, modular and extensible router",
-  "main": "dist/index.js",
-  "jsnext:main": "dist/index.es.js",
-  "module": "dist/index.es.js",
-  "typings": "dist/index.d.ts",
-  "files": [
-    "dist"
-  ],
-  "sideEffects": false,
-  "repository": {
-    "type": "git",
-    "url": "https://github.com/riogod/router5/router5.git"
-  },
-  "keywords": [
-    "router",
-    "routing",
-    "html5",
-    "functional",
-    "reactive",
-    "universal",
-    "isomorphic"
-  ],
-  "author": "Thomas Roch <thomas.c.roch@gmail.com>, Vyacheslav Krasnyanskiy <riogod@gmail.com>",
-  "license": "MIT",
-  "bugs": {
-    "url": "https://github.com/riogod/router5/issues"
-  },
-  "homepage": "https://router5.js.org",
-  "publishConfig": {
-    "access": "public"
-  },
-  "dependencies": {
-    "@riogz/router5-transition-path": "^9.0.0",
-    "route-node": "4.1.1",
-    "symbol-observable": "4.0.0"
-  },
-  "scripts": {
-    "test": "jest"
-  }
+    "name": "@riogz/router5",
+    "version": "9.0.0",
+    "description": "A simple, powerful, view-agnostic, modular and extensible router",
+    "main": "dist/index.js",
+    "jsnext:main": "dist/index.es.js",
+    "module": "dist/index.es.js",
+    "typings": "dist/index.d.ts",
+    "files": [
+        "dist"
+    ],
+    "sideEffects": false,
+    "repository": {
+        "type": "git",
+        "url": "https://github.com/riogod/router5/router5.git"
+    },
+    "keywords": [
+        "router",
+        "routing",
+        "html5",
+        "functional",
+        "reactive",
+        "universal",
+        "isomorphic"
+    ],
+    "author": "Thomas Roch <thomas.c.roch@gmail.com>, Vyacheslav Krasnyanskiy <riogod@gmail.com>",
+    "license": "MIT",
+    "bugs": {
+        "url": "https://github.com/riogod/router5/issues"
+    },
+    "homepage": "https://router5.js.org",
+    "publishConfig": {
+        "access": "public"
+    },
+    "dependencies": {
+        "@riogz/router5-transition-path": "^9.0.0",
+        "route-node": "4.1.1",
+        "symbol-observable": "4.0.0"
+    },
+    "scripts": {
+        "test": "jest"
+    }
 }
