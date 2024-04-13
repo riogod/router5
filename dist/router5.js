@@ -32,6 +32,16 @@
         return __assign.apply(this, arguments);
     };
 
+    function __spreadArray(to, from, pack) {
+        if (pack || arguments.length === 2) for (var i = 0, l = from.length, ar; i < l; i++) {
+            if (ar || !(i in from)) {
+                if (!ar) ar = Array.prototype.slice.call(from, 0, i);
+                ar[i] = from[i];
+            }
+        }
+        return to.concat(ar || Array.prototype.slice.call(from));
+    }
+
     typeof SuppressedError === "function" ? SuppressedError : function (error, suppressed, message) {
         var e = new Error(message);
         return e.name = "SuppressedError", e.error = error, e.suppressed = suppressed, e;
@@ -1348,6 +1358,8 @@
             function onRouteAdded(route) {
                 if (route.canActivate)
                     router.canActivate(route.name, route.canActivate);
+                if (route.canDeactivate)
+                    router.canDeactivate(route.name, route.canDeactivate);
                 if (route.forwardTo)
                     router.forward(route.name, route.forwardTo);
                 if (route.decodeParams)
@@ -1484,7 +1496,7 @@
                 ? getUrlParams(state2.name)
                 : Object.keys(state2.params);
             return (state1Params.length === state2Params.length &&
-                state1Params.every(function (p) { return state1.params[p] === state2.params[p]; }));
+                Array.from(new Set(__spreadArray(__spreadArray([], state1Params, true), state2Params, true))).every(function (p) { return state1.params[p] === state2.params[p]; }));
         };
         router.areStatesDescendants = function (parentState, childState) {
             var regex = new RegExp('^' + parentState.name + '\\.(.*)$');
