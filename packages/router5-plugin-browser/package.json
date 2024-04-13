@@ -1,6 +1,6 @@
 {
   "name": "@riogz/router5-plugin-browser",
-  "version": "9.0.0",
+  "version": "9.0.1",
   "description": "Router5 browser plugin",
   "main": "dist/index.js",
   "jsnext:main": "dist/index.es.js",
@@ -27,7 +27,7 @@
     "access": "public"
   },
   "devDependencies": {
-    "@riogz/router5": "^9.0.0"
+    "@riogz/router5": "^9.0.1"
   },
   "peerDependencies": {
     "@riogz/router5": "^9.0.0"

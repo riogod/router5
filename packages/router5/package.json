@@ -1,6 +1,6 @@
 {
   "name": "@riogz/router5",
-  "version": "9.0.0",
+  "version": "9.0.1",
   "description": "A simple, powerful, view-agnostic, modular and extensible router",
   "main": "dist/index.js",
   "jsnext:main": "dist/index.es.js",

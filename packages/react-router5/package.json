@@ -1,6 +1,6 @@
 {
   "name": "@riogz/react-router5",
-  "version": "9.0.0",
+  "version": "9.0.1",
   "description": "router5 helpers for React",
   "main": "dist/index.js",
   "jsnext:main": "dist/index.es.js",
@@ -34,7 +34,7 @@
     "@riogz/router5-transition-path": "^9.0.0"
   },
   "devDependencies": {
-    "@riogz/router5": "^9.0.0"
+    "@riogz/router5": "^9.0.1"
   },
   "peerDependencies": {
     "react": ">=17.0.0",
