@@ -1,6 +1,6 @@
 {
   "name": "@riogz/router5",
-  "version": "9.0.0-alpha.1",
+  "version": "9.0.0",
   "description": "A simple, powerful, view-agnostic, modular and extensible router",
   "main": "dist/index.js",
   "jsnext:main": "dist/index.es.js",
@@ -33,7 +33,7 @@
     "access": "public"
   },
   "dependencies": {
-    "@riogz/router5-transition-path": "^9.0.0-alpha.1",
+    "@riogz/router5-transition-path": "^9.0.0",
     "route-node": "4.1.1",
     "symbol-observable": "4.0.0"
   },
