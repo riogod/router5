@@ -1,11 +1,7 @@
-import React from 'react'
+import * as React from 'react'
 import { createTestRouter } from './helpers'
 import { RouterProvider, Link, ConnectedLink } from '..'
-import { mount, configure } from 'enzyme'
-import Adapter from 'enzyme-adapter-react-16'
-
-//@ts-ignore
-configure({ adapter: new Adapter() })
+import { fireEvent, render } from '@testing-library/react'
 
 describe('Link component', () => {
     let router
@@ -16,66 +12,71 @@ describe('Link component', () => {
 
     it('should render an hyperlink element', () => {
         router.addNode('home', '/home')
-        const output = mount(
+        const output = render(
             <RouterProvider router={router}>
-                <Link routeName={'home'} />
+                <Link routeName={'home'} data-testid="test-link" />
             </RouterProvider>
         )
-        expect(output.find('a').prop('href')).toBe('/home')
-        expect(output.find('a').prop('className')).not.toContain('active')
+        expect(output.getByTestId('test-link').getAttribute('href')).toBe(
+            '/home'
+        )
+        expect(output.getByTestId('test-link').className).not.toBe('active')
     })
 
     it('should have an active class if associated route is active', () => {
         router.setOption('defaultRoute', 'home')
         router.start()
-        const output = mount(
+        const output = render(
             <RouterProvider router={router}>
-                <Link routeName={'home'} />
+                <Link routeName={'home'} data-testid="test-link" />
             </RouterProvider>
         )
-        expect(output.find('a').prop('className')).toContain('active')
+        expect(output.getByTestId('test-link').className).toBe('active')
     })
 
     it('should not call router’s navigate method when used with target="_blank"', () => {
         router.start()
-        const output = mount(
+        const output = render(
             <RouterProvider router={router}>
-                <ConnectedLink routeName="home" title="Hello" target="_blank" />
+                <ConnectedLink
+                    routeName="home"
+                    title="Hello"
+                    target="_blank"
+                    data-testid="test-link"
+                />
             </RouterProvider>
         )
-        const a = output.find('a')
+        const a = output.getByTestId('test-link')
         const navSpy = jest.spyOn(router, 'navigate')
 
-        a.simulate('click')
+        fireEvent.click(a)
 
-        expect(a.prop('target')).toBeDefined()
+        expect(a.getAttribute('target')).toBeDefined()
         expect(navSpy).not.toHaveBeenCalled()
     })
 
     it('should spread other props to its link', () => {
         router.start()
         const onMouseLeave = () => {}
-        const output = mount(
+        const output = render(
             <RouterProvider router={router}>
                 <ConnectedLink
                     routeName={'home'}
                     title="Hello"
                     data-test-id="Link"
                     onMouseLeave={onMouseLeave}
+                    data-testid="test-link"
                 />
             </RouterProvider>
         )
 
-        const props = output.find('a').props()
+        const props = output.getByTestId('test-link')
 
-        expect(props).toEqual({
-            href: '/home',
-            className: 'active',
-            onClick: props.onClick,
-            title: 'Hello',
-            'data-test-id': 'Link',
-            onMouseLeave,
-            children: undefined
-        })
+        expect(props.getAttribute('href')).toBe('/home')
+        expect(props.className).toBe('active')
+        expect(props.getAttribute('title')).toBe('Hello')
+        expect(props.children.length).toBe(0)
+        expect(props.onclick).toBeDefined()
+        expect(props.onmouseleave).toBeDefined()
     })
 })

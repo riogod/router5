@@ -17,12 +17,12 @@ const makeConfig = ({
         typescript({
             tsconfig: `./packages/${packageName}/tsconfig.build.json`,
             useTsconfigDeclarationDir: true,
-            clean: true,
-            tsconfigOverride: { compilerOptions: { declaration } }
+            clean: true
         }),
         compress && uglify()
     ].filter(Boolean)
 
+    console.log(packageName, declaration, plugins)
     return {
         input: `packages/${packageName}/modules/index.ts`,
         external: umd
@@ -40,16 +40,19 @@ const makeConfig = ({
             ? {
                   file,
                   name: packageName,
-                  format: 'umd'
+                  format: 'umd',
+                  exports: 'named'
               }
             : [
                   {
                       format: 'es',
-                      file: `packages/${packageName}/dist/index.es.js`
+                      file: `packages/${packageName}/dist/index.es.js`,
+                      exports: 'named'
                   },
                   {
                       format: 'cjs',
-                      file: `packages/${packageName}/dist/index.js`
+                      file: `packages/${packageName}/dist/index.js`,
+                      exports: 'named'
                   }
               ],
         plugins
@@ -82,9 +85,5 @@ module.exports = [
     makePackageConfig('router5-plugin-logger'),
     makePackageConfig('router5-plugin-listeners'),
     makePackageConfig('router5-plugin-persistent-params'),
-    makePackageConfig('rxjs-router5'),
-    makePackageConfig('xstream-router5'),
-    makePackageConfig('react-router5'),
-    makePackageConfig('redux-router5'),
-    makePackageConfig('redux-router5-immutable')
+    makePackageConfig('react-router5')
 ].filter(Boolean)

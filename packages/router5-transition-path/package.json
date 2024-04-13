@@ -1,6 +1,6 @@
 {
-  "name": "router5-transition-path",
-  "version": "8.0.1",
+  "name": "@riogz/router5-transition-path",
+  "version": "9.0.0",
   "description": "Router5 transition path helper function",
   "main": "dist/index.js",
   "jsnext:main": "dist/index.es.js",
@@ -12,20 +12,23 @@
   "sideEffects": false,
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/router5/router5.git"
+    "url": "git+https://github.com/riogod/router5/router5.git"
   },
   "keywords": [
     "router5",
     "transition"
   ],
-  "author": "Thomas Roch <thomas.c.roch@gmail.com>",
+  "author": "Thomas Roch <thomas.c.roch@gmail.com>, Vyacheslav Krasnyanskiy <riogod@gmail.com>",
   "license": "MIT",
   "bugs": {
-    "url": "https://github.com/router5/router5/issues"
+    "url": "hhttps://github.com/riogod/router5/issues"
   },
   "homepage": "https://github.com/router5/router5/tree/master/packages/router5-transition-path",
+  "publishConfig": {
+    "access": "public"
+  },
   "peerDependencies": {
-    "router5": "^8.0.0"
+    "@riogz/router5": "^9.0.0"
   },
   "scripts": {
     "test": "jest"

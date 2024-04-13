@@ -7,3 +7,4 @@ lerna-debug.log
 packages/*/dist
 .changelog
 .DS_Store
+.idea
